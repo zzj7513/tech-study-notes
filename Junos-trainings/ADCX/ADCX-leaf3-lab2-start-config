@@ -1,0 +1,43 @@
+set version 18.4R1.8
+set system login user lab uid 2000
+set system login user lab class super-user
+set system login user lab authentication encrypted-password "$6$taWflV9u$jcqqSgeUfs/SW8jWwHP3fN5Gg3pqjuTAfI
+f8BJZSmgzCKG7ggJbNqkcgCK4dsg4CaZnGPNC2yjdLHCnxDOXKQ0"
+set system root-authentication encrypted-password "$6$DOl8kJ4d$nYdxu7KyEiKudTHI5PG1jtZxe.xQXAdGDWqmaiwmxlyn
+2fyZwpHFvqLH/DB9h75Xf/FUL2HAyi4rkJHZ0H/UT/"
+set system services ftp
+set system services ssh
+set system host-name leaf3
+set system syslog user * any emergency
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system extensions providers juniper license-type juniper deployment-scope commercial
+set system extensions providers chef license-type juniper deployment-scope commercial
+set interfaces xe-0/0/0 unit 0 family ethernet-switching vlan members v10
+set interfaces xe-0/0/2 unit 0 family inet address 172.16.1.5/31
+set interfaces xe-0/0/3 unit 0 family inet address 172.16.1.11/31
+set interfaces em0 unit 0 family inet address 172.25.11.5/24
+set interfaces em1 unit 0 family inet address 169.254.0.2/24
+set interfaces lo0 unit 0 family inet address 192.168.100.13/32
+set forwarding-options storm-control-profiles default all
+set routing-options router-id 192.168.100.13
+set routing-options autonomous-system 65000
+set protocols bgp group overlay type internal
+set protocols bgp group overlay local-address 192.168.100.13
+set protocols bgp group overlay family evpn signaling
+set protocols bgp group overlay local-as 65000
+set protocols bgp group overlay neighbor 192.168.100.1
+set protocols bgp group overlay neighbor 192.168.100.2
+set protocols ospf area 0.0.0.0 interface xe-0/0/2.0
+set protocols ospf area 0.0.0.0 interface xe-0/0/3.0
+set protocols ospf area 0.0.0.0 interface lo0.0
+set protocols evpn encapsulation vxlan
+set protocols evpn extended-vni-list all
+set switch-options vtep-source-interface lo0.0
+set switch-options route-distinguisher 192.168.100.13:1
+set switch-options vrf-target target:65000:1
+set switch-options vrf-target auto
+set vlans default vlan-id 1
+set vlans v10 vlan-id 10
+set vlans v10 vxlan vni 5010

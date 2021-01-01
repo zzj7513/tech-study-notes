@@ -1,0 +1,35 @@
+
+lab@host1:~$ source lab2-start.sh
+[sudo] password for lab: 
+Cannot find device "lag1"
+Cannot find device "vlan.20"
+copying interface configuration file
+applying interface configuration file
+ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.1.1.1  netmask 255.255.255.0  broadcast 10.1.1.255
+        inet6 fe80::5054:ff:fe5e:886a  prefixlen 64  scopeid 0x20<link>
+        ether 52:54:00:5e:88:6a  txqueuelen 1000  (Ethernet)
+        RX packets 170  bytes 9520 (9.5 KB)
+        RX errors 505  dropped 0  overruns 0  frame 505
+        TX packets 112  bytes 12438 (12.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        
+
+lab@host1:~$ cat lab2-start.sh 
+
+#!/bin/bash
+sudo ip link set ens4 down
+sudo ip link set ens5 down
+sudo ip link set lag1 down
+sudo ip link set vlan.10 down
+sudo ip link set vlan.20 down
+cd /home/lab/
+echo "copying interface configuration file"
+sudo cp ./interface-configs/lab2-start.yaml /etc/netplan/network.yaml
+sleep 2
+echo "applying interface configuration file"
+sudo netplan apply
+sleep 2
+ifconfig ens4
+echo "setup complete."
+
