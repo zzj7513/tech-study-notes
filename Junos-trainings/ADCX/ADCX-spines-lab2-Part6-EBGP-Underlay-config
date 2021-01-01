@@ -1,0 +1,32 @@
+{master:0}[edit]
+lab@spine1# show protocols bgp 
+group overlay {
+    type internal;
+    local-address 192.168.100.1;
+    family evpn {
+        signaling;
+    }
+    cluster 1.1.1.1;
+    multipath;
+    neighbor 192.168.100.11;
+    neighbor 192.168.100.12;
+    neighbor 192.168.100.13;
+    neighbor 192.168.100.2;
+}
+group underlay {
+    type external;
+    export Export-Directs;
+    local-as 65101;
+    multipath {
+        multiple-as;
+    }
+    neighbor 172.16.1.1 {
+        peer-as 65201;
+    }
+    neighbor 172.16.1.3 {
+        peer-as 65202;
+    }
+    neighbor 172.16.1.5 {
+        peer-as 65203;
+    }
+}

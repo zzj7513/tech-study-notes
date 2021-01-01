@@ -1,0 +1,12 @@
+lab@spine1# show 
+type internal;
+local-address 192.168.100.1;
+family evpn {
+    signaling;
+}
+cluster 1.1.1.1;
+multipath;
+neighbor 192.168.100.11;
+neighbor 192.168.100.12;
+neighbor 192.168.100.13;
+neighbor 192.168.100.2;

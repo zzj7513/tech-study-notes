@@ -1,0 +1,29 @@
+{master:0}[edit]
+lab@leaf1# set protocols bgp group underlay export Export-Directs 
+
+{master:0}[edit]
+lab@leaf1# show protocols bgp 
+group overlay {
+    type internal;
+    local-address 192.168.100.11;
+    family evpn {
+        signaling;
+    }
+    multipath;
+    neighbor 192.168.100.1;
+    neighbor 192.168.100.2;
+}
+group underlay {
+    type external;
+    export Export-Directs;
+    local-as 65201;
+    multipath {
+        multiple-as;
+    }
+    neighbor 172.16.1.0 {
+        peer-as 65101;
+    }
+    neighbor 172.16.1.6 {
+        peer-as 65102;
+    }
+}

@@ -1,0 +1,8 @@
+{master:0}[edit switch-options]
+lab@leaf1# show 
+vtep-source-interface lo0.0;
+route-distinguisher 192.168.100.11:1;
+vrf-target {
+    target:65000:1;
+    auto;
+}
