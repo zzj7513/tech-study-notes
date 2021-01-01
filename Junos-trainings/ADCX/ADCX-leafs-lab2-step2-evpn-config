@@ -6,3 +6,17 @@ vrf-target {
     target:65000:1;
     auto;
 }
+
+{master:0}[edit vlans]
+lab@leaf1# show 
+default {
+    vlan-id 1;
+}
+v10 {
+    vlan-id 10;
+    vxlan {
+        vni 5010;
+    }
+}
+
+
