@@ -1,6 +1,6 @@
-
-
+---
 # Includes a bonded LAG interface on the host, with vlan trunking of VLANs 15 and 20
+
 network:
         version: 2
         renderer: networkd
@@ -23,4 +23,7 @@ network:
 
                 ens5:
                         dhcp4: no
-                        
+---
+
+
+
