@@ -1,0 +1,13 @@
+{master:0}[edit interfaces xe-0/0/0]
+lab@leaf1# set unit 0 family ethernet-switching interface-mode trunk 
+
+{master:0}[edit interfaces xe-0/0/0]
+lab@leaf1# show 
+unit 0 {
+    family ethernet-switching {
+        interface-mode trunk;
+        vlan {
+            members v10;
+        }
+    }
+}
