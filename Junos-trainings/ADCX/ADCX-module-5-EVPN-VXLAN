@@ -1,6 +1,5 @@
 
 
-
 # Includes a bonded LAG interface on the host, with vlan trunking of VLANs 15 and 20
 network:
         version: 2
