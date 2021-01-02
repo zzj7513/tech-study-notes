@@ -1,0 +1,35 @@
+lab@spine2# show | compare 
+[edit interfaces]
++   irb {
++       unit 10 {
++           virtual-gateway-accept-data;
++           family inet {
++               address 10.1.1.102/24 {
++                   virtual-gateway-address 10.1.1.254;
++               }
++           }
++       }
++       unit 20 {
++           virtual-gateway-accept-data;
++           family inet {
++               address 10.1.2.102/24 {
++                   virtual-gateway-address 10.1.2.254;
++               }
++           }
++       }
++   }
+[edit vlans]
++   v10 {
++       vlan-id 10;
++       l3-interface irb.10;
++       vxlan {
++           vni 5010;
++       }
++   }
++   v20 {
++       vlan-id 20;
++       l3-interface irb.20;
++       vxlan {
++           vni 5020;
++       }
++   }

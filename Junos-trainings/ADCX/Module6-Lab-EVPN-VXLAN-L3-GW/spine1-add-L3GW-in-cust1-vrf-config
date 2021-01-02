@@ -1,0 +1,10 @@
+{master:0}[edit]
+lab@spine1# show routing-instances 
+customer1 {
+    instance-type vrf;
+    interface irb.10;
+    interface irb.20;
+    interface lo0.1;
+    route-distinguisher 192.168.100.101:1;
+    vrf-target target:65000:1;
+}

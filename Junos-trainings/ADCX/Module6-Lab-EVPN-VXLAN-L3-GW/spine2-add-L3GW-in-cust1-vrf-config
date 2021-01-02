@@ -1,0 +1,37 @@
+lab@spine2# show | compare 
+[edit interfaces lo0]
++    unit 1 {
++        family inet {
++            address 192.168.100.102/32;
++        }
++    }
+[edit policy-options]
++   policy-statement customer1-export {
++       term cust1 {
++           from interface [ irb.10 irb.20 ];
++           then {
++               community add customer1;
++               accept;
++           }
++       }
++   }
++   policy-statement customer1-import {
++       term cust1 {
++           from community customer-1;
++           then accept;
++       }
++   }
+[edit policy-options]
++   community customer-1 members target:65000:1;
+[edit]
++  routing-instances {
++      customer1 {
++          instance-type vrf;
++          interface irb.10;
++          interface irb.20;
++          interface lo0.1;
++          route-distinguisher 192.168.100.102:1;
++          vrf-import customer1-import;
++          vrf-export customer1-export;
++      }
++  }
