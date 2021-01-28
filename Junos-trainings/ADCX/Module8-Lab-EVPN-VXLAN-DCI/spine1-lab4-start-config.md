@@ -1,3 +1,4 @@
+```markdown
 set version 18.4R1.8
 set system login user lab uid 2000
 set system login user lab class super-user
@@ -53,4 +54,7 @@ set vlans default vlan-id 1
 set vlans v10 vlan-id 10
 set vlans v10 l3-interface irb.10
 set vlans v10 vxlan vni 5010
+```
+
+
 
